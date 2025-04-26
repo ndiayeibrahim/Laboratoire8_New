@@ -1,11 +1,27 @@
-#include "entrypoint.h"
+#include "raylib.h"
+#include "Breakout.h"
 
-#ifdef _WIN32
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-#else
-int main(int argc, char** argv){
-#endif
-    raylib_start();
+
+// #ifdef _WIN32
+// #define WIN32_LEAN_AND_MEAN
+// #include <windows.h>
+// int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+// #else
+// int main(int argc, char** argv){
+// #endif
+//     raylib_start();
+// }
+int main() {
+    Game* game = new Breakout();
+    game->Init();
+
+    while (game->Not_finished()) {
+        game->Update();
+        game->Draw();
+    }
+    
+    game->Deinit();
+    delete game;
+    return 0;
+    
 }
